@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Patch> 
+
+<Operation Class="PatchOperationSequence" MayRequire="ludeon.rimworld.ideology">
+	<operations> 
+	<li Class="PatchOperationAdd"> <!-- == Medic Cycle == -->
+		<xpath>Defs/ThingDef[defName="BiosculpterPod"]/comps/li[@Class="CompProperties_BiosculpterPod_HealingCycle"][key="medic"]/conditionsToPossiblyCure</xpath>
+			<value>
+			<li>BrainWorm</li>
+			<li>HeartWorm</li>
+			<li>LungWorms</li>
+			<li>LymphaticMechanites</li>
+			<li>EncapsulatedMuscleParasites</li>
+			</value>
+	</li>
+  
+	<li Class="PatchOperationAdd"> <!-- == Bioregeneration Cycle == -->
+		<xpath>Defs/ThingDef[defName="BiosculpterPod"]/comps/li[@Class="CompProperties_BiosculpterPod_HealingCycle"][key="bioregeneration"]/conditionsToPossiblyCure</xpath>
+			<value>
+			<li>SecondaryDamage</li>
+			</value>
+	</li>
+ 
+	<li Class="PatchOperationFindMod">
+		<mods>
+			<li>N's lazy patching</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<li Class="PatchOperationAdd"> <!-- == Bodyrestoration Cycle (Requires N's Lazy patching) == -->
+					<xpath>Defs/ThingDef[defName="BiosculpterPod"]/comps/li[@Class="CompProperties_BiosculpterPod_HealingCycle"][key="bodyrestoration"]/conditionsToPossiblyCure</xpath>
+					<value>
+					<li>MultipleSclerosis</li>
+					<li>SecondaryDamage</li>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</li>
+
+	</operations>
+</Operation>	
+	
+ </Patch>

@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<ThingDef ParentName="SK_MealBase">
+		<defName>VegetableBroth</defName>
+		<label>vegetable broth</label>
+		<description>A good vegetable broth. Eating one per day helps shaking of some diseases.</description>
+		<graphicData>
+			<texPath>Things/VegetableBroth</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+<!--	<descriptionHyperlinks>
+			<HediffDef>VegetableBrothHigh</HediffDef>
+	</descriptionHyperlinks>	-->	
+		<socialPropernessMatters>false</socialPropernessMatters>
+		<tickerType>Rare</tickerType>
+		<rotatable>false</rotatable>
+		<statBases>
+			<WorkToMake>600</WorkToMake>
+			<MarketValue>7</MarketValue>
+			<Mass>0.4</Mass>
+		</statBases>
+		<ingestible>
+			<preferability>NeverForNutrition</preferability>
+			<ingestEffect>EatVegetarian</ingestEffect>
+			<ingestSound>Meal_Eat</ingestSound>
+			<drugCategory>Medical</drugCategory>
+			<outcomeDoers>
+				<li Class="IngestionOutcomeDoer_GiveHediff">
+					<hediffDef>VegetableBrothHigh</hediffDef>
+					<severity>1.0</severity>
+				</li>
+			</outcomeDoers>
+		</ingestible>
+		<techLevel>Neolithic</techLevel>
+		<comps>
+			<li Class="CompProperties_Rottable">
+				<daysToRotStart>5</daysToRotStart>
+				<rotDestroys>true</rotDestroys>
+			</li>
+			<li Class="CompProperties_Drug">
+				<listOrder>1000</listOrder>
+				<overdoseSeverityOffset>
+					<min>0.08</min>
+					<max>0.14</max>
+				</overdoseSeverityOffset>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<HediffDef>
+		<defName>VegetableBrothHigh</defName>
+		<hediffClass>HediffWithComps</hediffClass>
+		<label>vegetable broth</label>
+		<description>Vegetable broth that increases immunty gain for a day.</description>
+		<defaultLabelColor>(1,0,0.5)</defaultLabelColor>
+		<scenarioCanAdd>true</scenarioCanAdd>
+		<maxSeverity>1.0</maxSeverity>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-0.98</severityPerDay>
+			</li>
+		</comps>
+		<stages>
+			<li>
+				<statOffsets>
+					<ImmunityGainSpeed>0.04</ImmunityGainSpeed>
+				</statOffsets>
+			</li>
+			<li>
+				<minSeverity>0.333</minSeverity>
+				<statOffsets>
+					<ImmunityGainSpeed>0.07</ImmunityGainSpeed>
+				</statOffsets>
+			</li>
+			<li>
+				<minSeverity>0.666</minSeverity>
+				<statOffsets>
+					<ImmunityGainSpeed>0.1</ImmunityGainSpeed>
+				</statOffsets>
+			</li>
+		</stages>
+	</HediffDef>
+
+	<RecipeDef ParentName="CookMealSpecialBase_SK">
+		<defName>MakeVegetableBroth</defName>
+		<label>cook vegetable broth</label>
+		<description>Prepares a vegetable broth from various nutritious vegatables. Produces 2.</description>
+		<jobString>Cooking vegetable broth.</jobString>
+		<workAmount>900</workAmount>
+		<soundWorking>Chemlab_Medicine_Drink</soundWorking>
+		<ingredients>
+			<li>
+				<filter>
+					<categories>
+						<li>BasicPlantFoodRaw</li>
+					</categories>
+					<disallowedThingDefs>
+						<li>RawCorn</li>
+						<li>RawRice</li>
+					</disallowedThingDefs>
+				</filter>
+				<count>0.5</count>
+			</li>
+			<li>
+				<filter>
+					<categories>
+						<li>FruitFoodRaw</li>
+					</categories>
+					<disallowedThingDefs>
+						<li>RawAgave</li>
+					</disallowedThingDefs>
+				</filter>
+				<count>0.4</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>RawAgave</li>
+						<li>Rawsugarcane</li>
+						<li>coconutmilk</li>
+					</thingDefs>
+				</filter>
+				<count>0.3</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>RawCorn</li>
+						<li>Rawbean</li>
+						<li>RawRice</li>
+						<li>RawShimmershroom</li>
+						<li>RawGlowbulb</li>
+						<li>Rawmushroom</li>
+						<li>RawFungus</li>
+						<li>Rawpeach</li>
+					</thingDefs>
+				</filter>
+				<count>0.3</count>
+			</li>
+		</ingredients>
+		<products>
+			<VegetableBroth>2</VegetableBroth>
+		</products>
+		<fixedIngredientFilter>
+			<categories>
+				<li>FruitFoodRaw</li>
+				<li>BasicPlantFoodRaw</li>
+			</categories>
+			<thingDefs>
+				<li>RawAgave</li>
+				<li>Rawsugarcane</li>
+				<li>coconutmilk</li>
+				<li>RawCorn</li>
+				<li>Rawbean</li>
+				<li>RawRice</li>
+				<li>RawShimmershroom</li>
+				<li>RawGlowbulb</li>
+				<li>Rawmushroom</li>
+				<li>RawFungus</li>
+				<li>Rawpeach</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<defaultIngredientFilter>
+			<categories>
+				<li>FruitFoodRaw</li>
+				<li>BasicPlantFoodRaw</li>
+			</categories>
+			<thingDefs>
+				<li>RawAgave</li>
+				<li>Rawsugarcane</li>
+				<li>coconutmilk</li>
+				<li>RawCorn</li>
+				<li>Rawbean</li>
+				<li>RawRice</li>
+				<li>RawShimmershroom</li>
+				<li>RawGlowbulb</li>
+				<li>Rawmushroom</li>
+				<li>RawFungus</li>
+				<li>Rawpeach</li>
+			</thingDefs>
+		</defaultIngredientFilter>
+		<skillRequirements>
+			<Cooking>2</Cooking>
+		</skillRequirements>
+		<recipeUsers>
+			<li>ElectricStove</li>
+			<li>FueledStove</li>
+			<li>Campfire</li>
+		</recipeUsers>
+		<researchPrerequisite>Pemmican</researchPrerequisite>
+	</RecipeDef>
+
+</Defs>

@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	
+    <Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Core SK</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<success>Always</success>
+			<operations>
+				<!--===== COMMON COLD =====-->
+				<!-- Common Cold Germs -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs</xpath>
+					<value>
+						<ThingDef ParentName="BaseFilth">
+							<defName>Filth_CommonColdGerms</defName>
+							<label>common cold germs</label>
+							<graphicData>
+							  <texPath>Things/Filth/Grainy</texPath>
+							  <color>(91,75,65,000)</color>
+							</graphicData>
+							<filth>
+							  <disappearsInDays>0.25</disappearsInDays>
+							  <cleaningWorkToReduceThickness>5</cleaningWorkToReduceThickness>
+							  <canFilthAttach>true</canFilthAttach>
+							</filth>
+							<statBases>
+							  <Beauty>0</Beauty>
+							  <Cleanliness>-1</Cleanliness>
+							</statBases>
+						</ThingDef>
+					</value>
+				</li>
+				
+				<!-- Common Cold HediffGiverSetDef -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/HediffGiverSetDef[defName = "Human"]/hediffGivers</xpath>
+					<value>
+						<li Class="CommunicableDiseases.HediffGiver_CommunicateDiseaseDirect">
+							<diseaseDef>CommonCold</diseaseDef>
+							<diseaseFilth>Filth_CommonColdGerms</diseaseFilth>
+							<germDropRate>100</germDropRate>
+							<humanlikeDisease>true</humanlikeDisease>
+							<animalDisease>false</animalDisease>
+						</li>
+					</value>
+				</li>
+			
+				<!--===== HansenKampffDisease =====-->
+				<!-- Hansen Kampff Disease Germs -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs</xpath>
+					<value>
+						<ThingDef ParentName="BaseFilth">
+							<defName>Filth_HansenKampffDiseaseGerms</defName>
+							<label>hansen kampff disease germs</label>
+							<graphicData>
+							  <texPath>Things/Filth/Grainy</texPath>
+							  <color>(91,75,65,000)</color>
+							</graphicData>
+							<filth>
+							  <disappearsInDays>0.25</disappearsInDays>
+							  <cleaningWorkToReduceThickness>5</cleaningWorkToReduceThickness>
+							  <canFilthAttach>true</canFilthAttach>
+							</filth>
+							<statBases>
+							  <Beauty>0</Beauty>
+							  <Cleanliness>-1</Cleanliness>
+							</statBases>
+						</ThingDef>
+					</value>
+				</li>
+				
+				<!-- Common Cold HediffGiverSetDef -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/HediffGiverSetDef[defName = "Human"]/hediffGivers</xpath>
+					<value>
+						<li Class="CommunicableDiseases.HediffGiver_CommunicateDiseaseDirect">
+							<diseaseDef>HansenKampffDisease</diseaseDef>
+							<diseaseFilth>Filth_HansenKampffDiseaseGerms</diseaseFilth>
+							<germDropRate>100</germDropRate>
+							<humanlikeDisease>true</humanlikeDisease>
+							<animalDisease>false</animalDisease>
+						</li>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+  
+</Patch>
